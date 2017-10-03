@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>兑奖专区</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="text/javascript">
+  !function(){var e=360,t=document.documentElement.clientWidth;if(t!==e){var n=document.getElementsByTagName("head")[0],m=document.createElement("style");m.innerHTML="html{font-size:"+t/e*100+"%;}",n.appendChild(m)}}();
+  </script>
+</head>
+<body>
+  <div class="header">
+    <a class="btn btn-left" onclick="history.go(-1)"><i class="icon icon-right"></i></a>
+    兑奖专区
+    <a class="btn btn-right" href="./cbc.html">关闭</a>
+  </div>
+  <div class="kill-banner"><img src="./img/banner1.png"></div>
+<!-- 列表项开始 -->
+  <ul class="zdms-lists-box" id="vuemember">
+    <li class="zdms-lists clearfix" v-for="(index,member) in memberList">   
+      <div>
+          <img :src="member.memberUrl" alt="">
+      </div>
+      <div>
+        <div>
+          <p>{{member.memberDet}}<br></p><span>{{member.memberBegin}}</span>
+        </div>
+        <div><p>{{member.memberLeft}}</p></div>
+      </div>
+      <div>
+        <div>￥<span>{{member.memberSale}}</span>元</div>
+        <span><i></i>￥{{member.memberOsale}}元</span>
+        
+      </div>
+      <div>
+        <div class="qg" @click="countDown(index)" id="countTime">抢购</div>
+      </div>
+    </li>
+  </ul>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/swiper.min.js"></script>
+  <script type="text/javascript" src="./js/vue.js"></script>
+  <script type="text/javascript">
+
+  var mySwiper = new Swiper('.swiper-container',{
+    loop: true,
+    pagination: '.swiper-pagination',
+    autoplay: 3000,
+    autoplayDisableOnInteraction: false
+  });
+
+
+  function stopProp(evt){
+    var e = window.event || evt; 
+
+    if ( e.stopPropagation ){ 
+      e.stopPropagation(); 
+    }else{ 
+      window.event.cancelBubble = true; 
+    } 
+  }
+
+  window.onload = function(){
+    setTimeout(function(){
+      $('.loader').hide();
+    },100);
+  };
+
+  // 倒计时数据
+  var vue = new Vue({
+        el:'#vuemember',
+        data:{
+          memberList: [
+              {
+                Timer: undefined,
+                countState: false,
+                select: 0,
+                memberUrl: './img/home-03.png',
+                memberDet: '原价37元星巴克',
+                memberBegin: '大杯券一张',
+                memberLeft: '剩余80份',
+                memberSale: 23,
+                memberOsale: 37,
+                memberCount: 7199,
+                countShow: undefined
+              },{
+                Timer: undefined,
+                countState: false,
+                select: 1,
+                memberUrl: './img/home-01.png',
+                memberDet: '44元猫眼电影票',
+                memberBegin: '代金券',
+                memberLeft: '剩余80份',
+                memberSale: 30,
+                memberOsale: 44,
+                memberCount: 7200,
+                countShow: undefined
+              },{
+                Timer: undefined,
+                countState: false,
+                select: 2,
+                memberUrl: './img/home-00.png',
+                memberDet: '原价18元爱奇艺',
+                memberBegin: 'VIP会员',
+                memberLeft: '剩余100份',
+                memberSale: 6,
+                memberOsale: 20,
+                memberCount: 0809,
+                countShow: undefined
+              },{
+                Timer: undefined,
+                countState: false,
+                select: 2,
+                memberUrl: './img/home-02.png',
+                memberDet: '30元滴滴代驾券',
+                memberBegin: '10点开抢',
+                memberLeft: '剩余100份',
+                memberSale: 16,
+                memberOsale: 30,
+                memberCount: 0809,
+                countShow: undefined
+              }
+            ]
+        },
+        methods: {
+          countDown: function (index) {
+          // 倒计时
+            var self = this;
+            if(self.memberList[index].countState){
+              return;
+            }
+            self.memberList[index].Timer = setInterval(function(){
+              self.memberList[index].countState = true;
+
+              var hour=Math.floor((self.memberList[index].memberCount)/3600); 
+
+              var minute=Math.floor((self.memberList[index].memberCount-hour*3600)/60); 
+
+              var second=Math.floor(self.memberList[index].memberCount-hour*3600-minute*60);
+
+              self.memberList[index].countShow = hour+"时"+minute+"分"+second+"秒";
+
+              if(self.memberList[index].memberCount <= 0){
+                clearInterval(self.memberList[index].Timer);
+                self.memberList[index].countState = false;
+              }
+              self.memberList[index].memberCount --;
+              
+            }, 1000);
+          }
+        }
+      })
+
+  </script>
+</body>
+</html>

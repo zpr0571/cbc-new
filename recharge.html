@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="text/javascript">
+  !function(){var e=360,t=document.documentElement.clientWidth;if(t!==e){var n=document.getElementsByTagName("head")[0],m=document.createElement("style");m.innerHTML="html{font-size:"+t/e*100+"%;}",n.appendChild(m)}}();
+  </script>
+</head>
+<body id="vuedoc">
+	<div class="header">
+    <a class="btn btn-left" onclick="history.go(-1)"><i class="icon icon-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="shouye">首页</span></a>
+    话费充值
+    <a class="btn btn-right"><i class="icon icon-order" id="icon-ask"></i></a>
+  </div>
+  <!-- 用户 -->
+  <div class="pnumber">
+    <input type="number" placeholder="请输入电话号码" class="icon-human">
+    <br>
+    <h5>默认浙江本地号码</h5>  
+  </div>
+  <!-- 可选充值数额 -->
+  <div class="cznum">
+    <h3>充话费</h3>
+    <h5>新客户充话费立减3元</h5>
+    <p class="clearfix"></p>
+    <ul class="cz-item clearfix">
+      <li v-for="(index,item) in guigelist" @click="selectProp(index)">
+        <h3>{{item.name}}</h3>
+        <i class="corner-tip">{{item.price}}</i>
+        <span>{{item.sale_price}}</span>
+      </li>
+    </ul>
+    <a>立即充值</a>
+  </div>
+ 	<script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/swiper.min.js"></script>
+  <script type="text/javascript" src="./js/vue.js"></script>
+  <script>
+      var vue = new Vue({
+        el:'#vuedoc',
+        data:{
+          guigelist: [
+              {
+                select: 0,
+                name: '10元',
+                price: '立减3元',
+                sale_price: '首充售价：7元'
+              },{
+                select: 1,
+                name: '20元',
+                price: '立减3元',
+                sale_price: '首充售价：17元'
+              },{
+                select: 2,
+                name: '30元',
+                price: '立减5元',
+                sale_price: '首充售价：27元'
+              },{
+                select: 3,
+                name: '50元',
+                price: '立减3元',
+                sale_price: '首充售价：47元'
+              },{
+                select: 4,
+                name: '200元',
+                price: '立减3元',
+                sale_price: '首充售价：197元'
+              },{
+                select: 5,
+                name: '300元',
+                price: '立减3元',
+                sale_price: '首充售价：297元'
+              },{
+                select: 6,
+                name: '500元',
+                price: '立减3元',
+                sale_price: '首充售价：497元'
+              },{
+                select: 7,
+                name: '100元',
+                price: '立减3元',
+                sale_price: '首充售价：97元'
+              }
+            ]
+        },
+        methods: {
+          selectProp: function (index) {
+          var listActive = this.guigelist[index].select;
+          // 选中状态背景色改变
+          if(listActive == index){
+             $('.cz-item li').removeClass('lists-active');
+             $('.cz-item li')[listActive].className = 'lists-active';
+          }
+        }
+        }
+      })
+  </script>
+</body>
+</html>

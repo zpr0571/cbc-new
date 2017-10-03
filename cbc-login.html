@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="text/javascript">
+  !function(){var e=360,t=document.documentElement.clientWidth;if(t!==e){var n=document.getElementsByTagName("head")[0],m=document.createElement("style");m.innerHTML="html{font-size:"+t/e*100+"%;}",n.appendChild(m)}}();
+  </script>
+</head>
+<body id="loginmsg">
+  <div class="loader">
+    <div class="loader-inner ball-scale-ripple-multiple">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="header">登录</div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="./img/banner.png">
+      </div>
+      <div class="swiper-slide">
+        <img src="./img/banner.png">
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <ul class="login-news">
+    <li>手机号：<input type="number" placeholder=""></li>
+    <li class="pic-yzm">图片验证码：<input type="text" placeholder=""><img src="./img/yzm-01.jpeg" alt=""></li>
+    <li class="text-yzm">手机验证码：<input type="text" placeholder=""><span @click="countDown()" id="yzm">{{isInCount ? time : '获取手机验证'}}</span></li>
+  </ul>
+  <div class="login-btn"><a href="./cbc.html">登录</a></div>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/swiper.min.js"></script>
+  <script type="text/javascript" src="./js/vue.js"></script>
+  <script type="text/javascript">
+
+  var mySwiper = new Swiper('.swiper-container',{
+    loop: true,
+    pagination: '.swiper-pagination',
+    autoplay: 3000,
+    autoplayDisableOnInteraction: false
+  });
+
+
+  function stopProp(evt){
+    var e = window.event || evt; 
+
+    if ( e.stopPropagation ){ 
+      e.stopPropagation(); 
+    }else{ 
+      window.event.cancelBubble = true; 
+    } 
+  }
+
+  window.onload = function(){
+    setTimeout(function(){
+      $('.loader').hide();
+    },100);
+  };
+
+
+// 倒计时
+  var vue = new Vue({
+    el:'#loginmsg',
+    data:{
+      setTime: undefined,
+      time: 60,
+      isInCount: false
+    },
+    methods: {
+      countDown: function () {
+        if(this.isInCount){
+          return;
+        }
+        var self = this;
+        setTime = setInterval(function(){
+          self.isInCount = true;
+            if(self.time <= 0){
+                clearInterval(self.setTime);
+                self.isInCount = false;
+            }
+            self.time --;
+        }, 1000);
+      }
+    }
+  })
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>建行新版本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <script type="text/javascript">
+  !function(){var e=360,t=document.documentElement.clientWidth;if(t!==e){var n=document.getElementsByTagName("head")[0],m=document.createElement("style");m.innerHTML="html{font-size:"+t/e*100+"%;}",n.appendChild(m)}}();
+  </script>
+</head>
+<body>
+  <div class="loader">
+    <div class="loader-inner ball-scale-ripple-multiple">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="header">特惠浙江</div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="./img/banner.png">
+      </div>
+      <div class="swiper-slide">
+        <img src="./img/banner2.png">
+      </div>
+      <div class="swiper-slide">
+        <img src="./img/banner.png">
+      </div>
+      <div class="swiper-slide">
+        <img src="./img/banner2.png">
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="home-act">
+    <div class="home-block">
+      <div class="home-title">
+        <i class="icon icon-hot"></i>
+        <span class="text-red">热门活动</span>
+      </div>
+      <div class="mainpic">
+        <a href="./lucky.html"><img src="./img/lucky.png"></a>
+      </div>
+      <div class="clearfix divi divi-2 divi-space">
+        <a class="item" href="./seckill.html"><img src="./img/seckill.png"></a>
+        <a class="item" href="./recharge.html"><img src="./img/recharge.png"></a>
+        <a class="item" href="./award.html"><img src="./img/award.png"></a>
+        <a class="item" href="http://buy.ccb.com/mTouchIndex.jhtml"><img src="./img/srmall.png"></a>
+      </div>
+    </div>
+    <div class="home-block">
+      <div class="home-title">
+        <i class="icon icon-youhui"></i>
+        <span class="text-green">优惠资讯</span>
+      </div>
+      <div class="mainpic">
+        <a href="http://www.ccb.com/cn/html1/office/finance/grb/subject/16/0719lkzzh/index.html"><img src="./img/dragon.png"></a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mask hide"></div>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/swiper.min.js"></script>
+  <script type="text/javascript">
+
+  var mySwiper = new Swiper('.swiper-container',{
+    loop: true,
+    pagination: '.swiper-pagination',
+    autoplay: 3000,
+    autoplayDisableOnInteraction: false
+  });
+
+
+  function stopProp(evt){
+    var e = window.event || evt; 
+
+    if ( e.stopPropagation ){ 
+      e.stopPropagation(); 
+    }else{ 
+      window.event.cancelBubble = true; 
+    } 
+  }
+
+  window.onload = function(){
+    setTimeout(function(){
+      $('.loader').hide();
+    },100);
+  };
+
+  </script>
+</body>
+</html>
